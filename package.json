@@ -1,0 +1,22 @@
+{
+  "name": "vidly",
+  "version": "1.0.0",
+  "description": "imaginary service for renting out movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sauloarth",
+    "node",
+    "express",
+    "mongo",
+    "api",
+    "backend"
+  ],
+  "author": "Saulo Reis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
