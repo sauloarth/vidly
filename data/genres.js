@@ -10,4 +10,6 @@ const genres = [{
         id: 3,
         genre: 'Comedy'
     },
-]
+];
+
+module.exports = genres;

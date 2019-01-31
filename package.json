@@ -17,6 +17,7 @@
   "author": "Saulo Reis",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "joi": "^13.0.1"
   }
 }
