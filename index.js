@@ -1,18 +1,20 @@
+const homeRoutes = require('./routes/home');
+const genresRoutes = require('./routes/genres');
 const startupDebug = require('debug')('vidly:startup');
-const dataDebug = require('debug')('vidly:data');
 const config = require('config');
 const morgan = require('morgan');
-const Joi = require('joi');
-const genres = require('./data/genres');
 const express = require('express');
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use('/genres', genresRoutes);
+app.use('/', homeRoutes);
 
 app.set('view engine', 'pug');
 app.set('views', './views');
+
 
 //Configuration
 startupDebug(`Application Name: ${config.get('name')}`);
@@ -24,59 +26,7 @@ if (app.get('env') === 'development') {
     console.log('Morgan enabled...');
 }
 
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Vidly', message: 'This is a message for you' });
-    dataDebug(genres);
-});
 
-app.get('/:id', (req, res) => {
-    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
-    data ? res.send(data) : res.status(404).send('Genre not found.');
-})
-
-app.post('/', (req, res) => {
-    //validating process with Joi
-    const { error } = validateGenre(req.body);
-
-    if (error) {
-        return res.status(400).send(error.details[0].message);
-    }
-
-    //once validated, genre is "persisted".
-    const newGenre = {
-        id: genres.length + 1,
-        genre: req.body.genre
-    }
-
-    genres.push(newGenre);
-    res.send(newGenre); // returned: for the cases where the id must be known
-})
-
-app.put('/:id', (req, res) => {
-    //validating process with Joi
-    const { error } = validateGenre(req.body);
-
-    if (error) {
-        return res.status(400).send(error.details[0].message);
-    }
-
-    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
-    data ? data = req.body : res.status(404).send('Genre not found.');
-
-    res.send(data);
-
-    console.log(genres)
-
-})
-
-function validateGenre(genreObj) {
-    // Joi schema accessible by all functions
-    const schema = {
-        genre: Joi.string().min(3).required()
-    };
-
-    return Joi.validate(genreObj, schema);
-}
 
 
 
