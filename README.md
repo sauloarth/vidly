@@ -9,4 +9,5 @@ Imaginary service for renting out movies developed on Node Backend Training on U
 * how request processing pipeline works (order matters, next function)
 * express.json() - create req.body on requrest and parse it
 * Joi for make validations (awesome)
+* Working with alternative environments
 
