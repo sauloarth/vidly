@@ -1,3 +1,5 @@
+const startupDebug = require('debug')('vidly:startup');
+const dataDebug = require('debug')('vidly:data');
 const config = require('config');
 const morgan = require('morgan');
 const Joi = require('joi');
@@ -10,9 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //Configuration
-console.log(`Application Name: ${config.get('name')}`);
-console.log(`Mail Server: ${config.get('mail.host')}`);
-console.log(`Password: ${config.get('mail.password')}`);
+startupDebug(`Application Name: ${config.get('name')}`);
+startupDebug(`Mail Server: ${config.get('mail.host')}`);
+startupDebug(`Password: ${config.get('mail.password')}`);
 
 if (app.get('env') === 'development') {
     app.use(morgan('tiny'));
@@ -21,7 +23,7 @@ if (app.get('env') === 'development') {
 
 app.get('/', (req, res) => {
     res.send(genres);
-    console.log(genres);
+    dataDebug(genres);
 });
 
 app.get('/:id', (req, res) => {

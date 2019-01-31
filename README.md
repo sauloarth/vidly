@@ -11,4 +11,5 @@ Imaginary service for renting out movies developed on Node Backend Training on U
 * Joi for make validations (awesome)
 * Working with alternative environments
 * Setting alternative configurations depending on environment
+* Using especific debbuging console messages (DEBUG env. variabla)
 
