@@ -17,14 +17,10 @@ app.get('/:id', (req, res) => {
 
 app.post('/', (req, res) => {
     //validating process with Joi
-    const schema = {
-        genre: Joi.string().min(3).required()
-    };
+    const { error } = validateGenre(req.body);
 
-    const result = Joi.validate(req.body, schema);
-
-    if (result.error) {
-        return res.status(400).send(result.error.details[0].message);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
     }
 
     //once validated, genre is "persisted".
@@ -36,6 +32,32 @@ app.post('/', (req, res) => {
     genres.push(newGenre);
     res.send(newGenre); // returned: for the cases where the id must be known
 })
+
+app.put('/:id', (req, res) => {
+    //validating process with Joi
+    const { error } = validateGenre(req.body);
+
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
+    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
+    data ? data = req.body : res.status(404).send('Genre not found.');
+
+    res.send(data);
+
+    console.log(genres)
+
+})
+
+function validateGenre(genreObj) {
+    // Joi schema accessible by all functions
+    const schema = {
+        genre: Joi.string().min(3).required()
+    };
+
+    return Joi.validate(genreObj, schema);
+}
 
 
 
