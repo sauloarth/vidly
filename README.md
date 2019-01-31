@@ -12,4 +12,5 @@ Imaginary service for renting out movies developed on Node Backend Training on U
 * Working with alternative environments
 * Setting alternative configurations depending on environment
 * Using especific debbuging console messages (DEBUG env. variabla)
+* Working with template engines (pug)
 

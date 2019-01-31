@@ -11,6 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 //Configuration
 startupDebug(`Application Name: ${config.get('name')}`);
 startupDebug(`Mail Server: ${config.get('mail.host')}`);
@@ -22,7 +25,7 @@ if (app.get('env') === 'development') {
 }
 
 app.get('/', (req, res) => {
-    res.send(genres);
+    res.render('index', { title: 'Vidly', message: 'This is a message for you' });
     dataDebug(genres);
 });
 
