@@ -10,4 +10,5 @@ Imaginary service for renting out movies developed on Node Backend Training on U
 * express.json() - create req.body on requrest and parse it
 * Joi for make validations (awesome)
 * Working with alternative environments
+* Setting alternative configurations depending on environment
 
