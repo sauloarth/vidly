@@ -33,21 +33,21 @@ routes.post('/', (req, res) => {
 })
 
 routes.put('/:id', (req, res) => {
+    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
+    if (!data) return res.status(404).send('Genre not found.');
+
     //validating process with Joi
     const { error } = validateGenre(req.body);
-
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
 
-    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
-    data ? data = req.body : res.status(404).send('Genre not found.');
-
+    //if values turned down to be valid the array is changed.
+    data.genre = req.body.genre;
     res.send(data);
 
-    console.log(genres)
-
 })
+
 
 function validateGenre(genreObj) {
     // Joi schema accessible by all functions
