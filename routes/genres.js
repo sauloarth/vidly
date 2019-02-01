@@ -10,7 +10,8 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/:id', (req, res) => {
-    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
+    const data = genres.find(genre =>
+        genre.id === parseInt(req.params.id)); // req.params.id returns a string
     data ? res.send(data) : res.status(404).send('Genre not found.');
 })
 
@@ -33,7 +34,8 @@ routes.post('/', (req, res) => {
 })
 
 routes.put('/:id', (req, res) => {
-    const data = genres.find(genre => genre.id === parseInt(req.params.id)); // req.params.id returns a string
+    const data = genres.find(genre =>
+        genre.id === parseInt(req.params.id)); // req.params.id returns a string
     if (!data) return res.status(404).send('Genre not found.');
 
     //validating process with Joi
@@ -46,6 +48,17 @@ routes.put('/:id', (req, res) => {
     data.genre = req.body.genre;
     res.send(data);
 
+})
+
+routes.delete('/:id', (req, res) => {
+    const data = genres.find(genre =>
+        genre.id === parseInt(req.params.id)); // req.params.id returns a string
+    if (!data) return res.status(404).send('Genre not found');
+
+    const index = genres.indexOf(data);
+
+    genres.splice(index, 1);
+    res.send(data);
 })
 
 
