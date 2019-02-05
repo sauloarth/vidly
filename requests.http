@@ -15,9 +15,9 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:3000/genres/5c59d66c3ec51b1650b0d5f3 HTTP/1.1
+PUT http://localhost:3000/genres/5c59d65d5450ab0a88be6d66 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Biographical"
+    "name": "Sciency"
 }

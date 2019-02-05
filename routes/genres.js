@@ -64,7 +64,7 @@ routes.put('/:id', (req, res) => {
     }
     updateById(id, data);
     async function updateById(id, data) {
-        const result = await Genre.findOneAndUpdate(id, data, {new: true})
+        const result = await Genre.updateOne({_id:id}, data)
         if(!result) {
             return res.status(404).send('Genre not found.');
         }
