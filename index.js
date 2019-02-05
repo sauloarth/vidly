@@ -5,6 +5,12 @@ const config = require('config');
 const morgan = require('morgan');
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+
+mongoose.connect(config.get('db.path'), { useNewUrlParser: true })
+    .then(console.log('Database connected.'))
+    .catch(err => console.log('Error connecting on Database: ', err));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,10 +21,6 @@ app.use('/', homeRoutes);
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-
-//Configuration
-startupDebug(`Application Name: ${config.get('name')}`);
-startupDebug(`DB Path: ${config.get('db.path')}`);
 
 
 if (app.get('env') === 'development') {
