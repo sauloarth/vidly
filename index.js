@@ -18,8 +18,8 @@ app.set('views', './views');
 
 //Configuration
 startupDebug(`Application Name: ${config.get('name')}`);
-startupDebug(`Mail Server: ${config.get('mail.host')}`);
-startupDebug(`Password: ${config.get('mail.password')}`);
+startupDebug(`DB Path: ${config.get('db.path')}`);
+
 
 if (app.get('env') === 'development') {
     app.use(morgan('tiny'));
