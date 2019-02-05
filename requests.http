@@ -2,14 +2,22 @@ GET http://localhost:3000/genres HTTP/1.1
 
 ###
 
-GET https://example.com/topics/1 HTTP/1.1
+GET http://localhost:3000/genres/5c59c12bd19fb123a402d30d HTTP/1.1
 
 ###
 
-POST https://example.com/comments HTTP/1.1
+POST http://localhost:3000/genres/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+    "name": "Pseudu"
+}
+
+###
+
+PUT http://localhost:3000/genres/5c59d66c3ec51b1650b0d5f3 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Biographical"
 }
