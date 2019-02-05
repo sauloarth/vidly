@@ -1,3 +1,7 @@
 {
-    "name": "Vidly"
+    "name": "Vidly",
+    "db": {
+        "path": "db_PATH",
+        "password": "db_PASSWORD"
+    }
 }

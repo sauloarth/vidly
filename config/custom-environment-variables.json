@@ -1,5 +1,6 @@
 {
-    "mail": {
-        "password": "vidly_password"
+    "db": {
+        "path": "db_PATH",
+        "password": "db_PASSWORD"
     }
 }

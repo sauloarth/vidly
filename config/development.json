@@ -1,6 +1,7 @@
 {
     "name": "Vidly - Development setup",
-    "mail": {
-        "host": "dev-mail-server"
+    "db": {
+        "path": "db_PATH",
+        "password": "db_PASSWORD"
     }
 }

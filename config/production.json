@@ -1,6 +1,7 @@
 {
     "name": "Vidly App",
-    "mail": {
-        "host": "prod-mail-server"
+    "db": {
+        "path": "db_PATH",
+        "password": "db_PASSWORD"
     }
 }
