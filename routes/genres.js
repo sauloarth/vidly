@@ -3,10 +3,21 @@ const routes = express.Router();
 const genres = require('../data/genres');
 const Joi = require('joi');
 const dataDebug = require('debug')('vidly:data');
+const mongoose = require('mongoose');
+const Genre = require('../models/genre');
 
 routes.get('/', (req, res) => {
-    res.send(genres);
-    dataDebug(genres);
+    async function getGenres() {
+        return await Genre.find();
+    }
+
+    async function sendGenres() {
+        const results = await getGenres();
+        res.send(results);
+        dataDebug(results);
+    }
+
+    sendGenres();
 });
 
 routes.get('/:id', (req, res) => {
