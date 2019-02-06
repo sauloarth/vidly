@@ -57,6 +57,7 @@ routes.post('/', (req, res) => {
 routes.put('/:id', (req, res) => {
     const id = req.params.id;
     const data = req.body;
+
     //validating process with Joi
     const { error } = validateGenre(data);
     if (error) {
@@ -69,20 +70,23 @@ routes.put('/:id', (req, res) => {
             return res.status(404).send('Genre not found.');
         }
 
-        return res.send(result); // if values turned down to be valid the array is changed.
+        return res.send(result); 
     }
 })
 
 routes.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    
+    deleteGenre(id);
 
-    const data = genres.find(genre =>
-        genre.id === parseInt(req.params.id)); // req.params.id returns a string
-    if (!data) return res.status(404).send('Genre not found');
+    async function deleteGenre(id) {
+        const result = await Genre.deleteOne({_id:id})
+        if(!result) {
+            return res.status(404).send('Genre not found.');
+        }
 
-    const index = genres.indexOf(data);
-
-    genres.splice(index, 1);
-    res.send(data);
+        return res.send(result); 
+    }
 })
 
 
