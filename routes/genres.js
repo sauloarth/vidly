@@ -6,87 +6,74 @@ const db = require('debug')('vidly:data');
 const mongoose = require('mongoose');
 const Genre = require('../models/genre');
 
-routes.get('/', (req, res) => {
-    async function getGenres() {
-        return await Genre.find();
-    }
-
-    async function sendGenres() {
-        const results = await getGenres();
-        res.send(results);
-        db(results);
-    }
-
-    sendGenres();
+routes.get('/', async (req, res) => {
+    const results = await Genre.find();   
+    res.send(results);
+    db(results);
 });
 
-routes.get('/:id', (req, res) => {
+routes.get('/:id', async (req, res) => {
     const id = req.params.id;
-    db(id);
-    async function getGenreById(id) {
-        const genre = await Genre.findById(id)
-        genre ? res.send(genre) : res.status(404).send('Genre not found.');
-    }
-
-    getGenreById(id);
-
+    const genre = await Genre.findById(id)
+    genre ? res.send(genre) : res.status(404).send('Genre not found.');
+    // TODO: it runs into an error when an id greater
+    // or less than the regular id is passed.
 })
 
-routes.post('/', (req, res) => {
-    //validating process with Joi
+routes.post('/', async (req, res) => {
+    // validation process with Joi
     const { error } = validateGenre(req.body);
-
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
 
-    //once validated, genre is persisted.
+    // creating object to persist
     const genre = new Genre({
         name: req.body.name
     });
 
-    async function createGenre(genre) {
-        const result = await genre.save();
-        result ? 
-        res.send(`Genre ${result.name} saved with success`) : 
+    // trying to persist into the database
+    const result = await genre.save();
+    if(result) {
+        res.send(`Genre ${result.name} saved with success`); 
+    } else {
         res.status(404).send('Genre could not to be saved.');
     }
-    createGenre(genre);
+
 })
 
-routes.put('/:id', (req, res) => {
+routes.put('/:id', async (req, res) => {
     const id = req.params.id;
     const data = req.body;
 
-    //validating process with Joi
+    // validation process with Joi
     const { error } = validateGenre(data);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
-    updateById(id, data);
-    async function updateById(id, data) {
-        const result = await Genre.updateOne({_id:id}, data)
-        if(!result) {
-            return res.status(404).send('Genre not found.');
-        }
+
+    // trying to persist into the database
+    const result = await Genre.updateOne({_id:id}, data)
+    if(!result) {
+        // DEBUG: even when document is not changed it returns an object
+        return res.status(404).send('Genre not found.');
+    } else {
 
         return res.send(result); 
     }
+
 })
 
-routes.delete('/:id', (req, res) => {
+routes.delete('/:id', async (req, res) => {
     const id = req.params.id;
-    
-    deleteGenre(id);
 
-    async function deleteGenre(id) {
-        const result = await Genre.deleteOne({_id:id})
-        if(!result) {
-            return res.status(404).send('Genre not found.');
-        }
-
-        return res.send(result); 
+    const result = await Genre.deleteOne({_id:id})
+    if(!result) {
+        // DEBUG: even when document is not deleted it returns an object
+        return res.status(404).send('Genre not found.');
     }
+
+    return res.send(result); 
 })
 
 
