@@ -7,7 +7,7 @@ POST http://localhost:3000/genres/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sadsfasdfasdfasdfasdsssssssssssssssssssssssssfasdfasdfasdfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdfaaaaaaaaaaaaaaaaaaaaaaaaaaasdfasdfasdfasdfasdffasdfasdfasdfasdf"
+    "name": "Tutorials"
 }
 ###
 PUT http://localhost:3000/genres/5c59c107d19fb123a402d30b HTTP/1.1
@@ -19,3 +19,16 @@ content-type: application/json
 
 ###
 DELETE  http://localhost:3000/genres/5c5c05acf48cc11540eba996 HTTP/1.1
+
+###
+GET http://localhost:3000/costumers HTTP/1.1
+
+###
+POST http://localhost:3000/costumers/ HTTP/1.1
+content-type: application/json
+
+{
+    "isGold": false,
+    "name": "Tranbolping Baby",
+    "phone": "99383829"
+}
