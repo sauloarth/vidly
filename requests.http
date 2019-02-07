@@ -24,6 +24,9 @@ DELETE  http://localhost:3000/genres/5c5c05acf48cc11540eba996 HTTP/1.1
 GET http://localhost:3000/costumers HTTP/1.1
 
 ###
+GET http://localhost:3000/costumers/5c5c1ed75c28671208014359 HTTP/1.1
+
+###
 POST http://localhost:3000/costumers/ HTTP/1.1
 content-type: application/json
 
@@ -32,3 +35,14 @@ content-type: application/json
     "name": "Tranbolping Baby",
     "phone": "99383829"
 }
+
+###
+PUT http://localhost:3000/costumers/5c5c1ed75c28671208014359 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Percian Prince"
+}
+
+###
+DELETE  http://localhost:3000/costumers/5c5c20d2d3eb7603a8b2a56d  HTTP/1.1
