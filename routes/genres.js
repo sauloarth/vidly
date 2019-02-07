@@ -37,7 +37,7 @@ routes.post('/', async (req, res) => {
     if(result) {
         res.send(`Genre ${result.name} saved with success`); 
     } else {
-        res.status(404).send('Genre could not to be saved.');
+        res.status(404).send('Genre could not be saved.');
     }
 
 })
@@ -77,13 +77,13 @@ routes.delete('/:id', async (req, res) => {
 })
 
 
-function validateGenre(genreObj) {
+function validateGenre(genre) {
     // Joi schema accessible by all functions
     const schema = {
         name: Joi.string().min(3).required()
     };
 
-    return Joi.validate(genreObj, schema);
+    return Joi.validate(genre, schema);
 }
 
 module.exports = routes;
