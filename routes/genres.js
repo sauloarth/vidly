@@ -1,10 +1,8 @@
 const express = require('express')
 const routes = express.Router();
-const genres = require('../data/genres');
 const Joi = require('joi');
 const db = require('debug')('vidly:data');
-const mongoose = require('mongoose');
-const Genre = require('../models/genre');
+const { Genre } = require('../models/genre');
 
 routes.get('/', async (req, res) => {
     const results = await Genre.find();   
