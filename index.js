@@ -1,6 +1,7 @@
 const homeRoutes = require('./routes/home');
 const genresRoutes = require('./routes/genres');
 const costumersRoutes = require('./routes/costumers');
+const moviesRoutes = require('./routes/movies');
 const db = require('debug')('vidly:startup');
 const config = require('config');
 const morgan = require('morgan');
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/genres', genresRoutes);
 app.use('/costumers', costumersRoutes);
+app.use('/movies', moviesRoutes);
 app.use('/', homeRoutes);
 
 app.set('view engine', 'pug');

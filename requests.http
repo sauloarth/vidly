@@ -46,3 +46,31 @@ content-type: application/json
 
 ###
 DELETE  http://localhost:3000/costumers/5c5c20d2d3eb7603a8b2a56d  HTTP/1.1
+
+###
+
+GET  http://localhost:3000/movies/ HTTP/1.1
+
+###
+
+POST http://localhost:3000/movies/ HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Criminal Mind",
+    "genreId": "5c59c11ad19fb123a402d30c",
+    "numberInStock": "25",
+    "dailyRentalRate": "5.3"
+}
+
+###
+
+PUT http://localhost:3000/movies/5c6492640613ae748f56d735 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Criminal Mind",
+    "genreId": "5c59c107d19fb123a402d30b",
+    "numberInStock": "10",
+    "dailyRentalRate": "2.4"
+}
