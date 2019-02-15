@@ -63,6 +63,14 @@ routes.put('/:id', async (req, res) => {
 
 })
 
+routes.delete('/:id', async (req, res) => {
+    const result = await Movie.deleteOne({_id: req.params.id});
+    if(result.deletedCount === 0) {
+        return res.status(404).send('Movie was not deleted.');
+    }
+    return res.send('The movie was successfuly deleted.');
+})
+
 function validateMovie(movie) {
     const schema = {
         title: Joi.string().required().min(3).max(100),
