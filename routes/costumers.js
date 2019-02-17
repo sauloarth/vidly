@@ -1,11 +1,11 @@
 const express = require('express');
 const routes = express.Router();
-const Costumer = require('../models/customer');
+const { Customer } = require('../models/customer');
 const Joi = require('joi');
 const db = require('debug')('vidly:costumersRoutes');
 
 routes.get('/', async (req, res) => {
-    const results = await Costumer.find();   
+    const results = await Customer.find();   
     res.send(results);
     db(results);
 })

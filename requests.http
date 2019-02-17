@@ -7,7 +7,7 @@ POST http://localhost:3000/genres/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Tutorials"
+    "name": ""
 }
 ###
 PUT http://localhost:3000/genres/5c59c107d19fb123a402d30b HTTP/1.1
@@ -57,10 +57,10 @@ POST http://localhost:3000/movies/ HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Suspetious Mind",
-    "genreId": "5c59c11ad19fb123a402d30c",
-    "numberInStock": "25",
-    "dailyRentalRate": "5.3"
+    "title": "Matrix",
+    "genreId": "5c680286270ac96ae14ad961",
+    "numberInStock": "10",
+    "dailyRentalRate": "2.1"
 }
 
 ###
@@ -78,3 +78,15 @@ content-type: application/json
 ###
 
 DELETE  http://localhost:3000/movies/5c66e430551d615284467273 HTTP/1.1
+
+###
+
+POST http://localhost:3000/rentals/ HTTP/1.1
+content-type: application/json
+
+{
+    "initDate":"2019-02-16",
+    "customerId": "5c5c1e8e5c28671208014358",
+    "movieId": "5c64918b097683736cba97b1",
+    "amountOfDays": "2"
+}

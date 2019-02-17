@@ -1,4 +1,5 @@
 const homeRoutes = require('./routes/home');
+const rentalsRoutes = require('./routes/rentals');
 const genresRoutes = require('./routes/genres');
 const costumersRoutes = require('./routes/costumers');
 const moviesRoutes = require('./routes/movies');
@@ -20,6 +21,7 @@ app.use(express.static('public'));
 app.use('/genres', genresRoutes);
 app.use('/costumers', costumersRoutes);
 app.use('/movies', moviesRoutes);
+app.use('/rentals', rentalsRoutes);
 app.use('/', homeRoutes);
 
 app.set('view engine', 'pug');
