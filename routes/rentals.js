@@ -1,28 +1,35 @@
 const express = require('express');
 const routes = express.Router();
+const mongoose = require('mongoose');
 const { Rental } = require('../models/rental');
+const { validate } = require('../models/rental');
 const { Customer } = require('../models/customer');
 const { Movie } = require('../models/movie');
-const Joi = require('joi');
+const Fawn = require('fawn');
 const db = require('debug')('vidly:rentalRoute');
 
+Fawn.init(mongoose);
+
+routes.get('/', async (req, res) => {
+    const rentals = await Rental.find();
+    res.send(rentals);
+})
+
 routes.post('/', async (req, res) => {
-    const { error } = validateRental(req.body);
-    if(error) return res.send(400, error.details[0].message);
+    const { error } = validate(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
 
     const movie = await Movie.findOne({_id: req.body.movieId});
-    if(!movie) return res.send(400, 'Movie not found.');
-    db(movie);
+    if(!movie) return res.status(400).send('Movie not found.');
 
     const customer = await Customer.findOne({_id: req.body.customerId});
-    if(!customer) return res.send(400, 'Customer not found');
-    db(customer);
+    if(!customer) return res.status(400).send('Customer not found');
 
     const rental = new Rental({ 
-        amountOfDays: req.body.amountOfDays,
         customer: {
             _id: customer._id,
             name: customer.name,
+            isGold: customer.isGold
         },
         movie: {
             _id: movie._id,
@@ -30,25 +37,22 @@ routes.post('/', async (req, res) => {
         }
     });
 
-    db(rental);
+    try {
+        new Fawn.Task()
+            .save('rentals', rental)
+            .update('movies', {_id: movie._id}, {
+                $inc: {
+                    numberInStock: -1
+                }
+            })
+            .run();
 
-    const result = await rental.save();
-    if(result) return res.status(400).send(`Movie rented`);
+            res.status(400).send(`Movie rented`);
+            db(rental);
 
-    return res.status(404).send('Rent operation could not have be finished.');
-
-    
-})
-
-function validateRental(rental) {
-    const schema = {
-        initDate: Joi.date().required(),
-        amountOfDays: Joi.number().max(10).min(1),
-        customerId: Joi.required(),
-        movieId: Joi.required()
+    } catch (err) {
+        res.status(500).send('Rental not registred.');
     }
-
-    return Joi.validate(rental, schema);
-}
+})
 
 module.exports = routes;

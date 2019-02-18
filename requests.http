@@ -7,7 +7,7 @@ POST http://localhost:3000/genres/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": ""
+    "name": "Fantasy"
 }
 ###
 PUT http://localhost:3000/genres/5c59c107d19fb123a402d30b HTTP/1.1
@@ -32,8 +32,8 @@ content-type: application/json
 
 {
     "isGold": false,
-    "name": "Tranbolping Baby",
-    "phone": "99383829"
+    "name": "Gillardo Josefo",
+    "phone": "985274893"
 }
 
 ###
@@ -57,10 +57,10 @@ POST http://localhost:3000/movies/ HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Matrix",
-    "genreId": "5c680286270ac96ae14ad961",
-    "numberInStock": "10",
-    "dailyRentalRate": "2.1"
+    "title": "Narnia Chronics",
+    "genreId": "5c6b0a7f82faa823b07919d4",
+    "numberInStock": "12",
+    "dailyRentalRate": "3.1"
 }
 
 ###
@@ -81,12 +81,14 @@ DELETE  http://localhost:3000/movies/5c66e430551d615284467273 HTTP/1.1
 
 ###
 
-POST http://localhost:3000/rentals/ HTTP/1.1
+POST http://localhost:3000/api/rentals/ HTTP/1.1
 content-type: application/json
 
 {
-    "initDate":"2019-02-16",
-    "customerId": "5c5c1e8e5c28671208014358",
-    "movieId": "5c64918b097683736cba97b1",
-    "amountOfDays": "2"
+    "customerId": "5c6b116433a83f1fd842f12b",
+    "movieId": "5c6b0b4e82faa823b07919d5"
 }
+
+###
+
+GET http://localhost:3000/api/rentals/ HTTP/1.1

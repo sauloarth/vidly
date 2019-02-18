@@ -1,7 +1,9 @@
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const homeRoutes = require('./routes/home');
 const rentalsRoutes = require('./routes/rentals');
 const genresRoutes = require('./routes/genres');
-const costumersRoutes = require('./routes/costumers');
+const costumersRoutes = require('./routes/customers');
 const moviesRoutes = require('./routes/movies');
 const db = require('debug')('vidly:startup');
 const config = require('config');
@@ -21,7 +23,7 @@ app.use(express.static('public'));
 app.use('/genres', genresRoutes);
 app.use('/costumers', costumersRoutes);
 app.use('/movies', moviesRoutes);
-app.use('/rentals', rentalsRoutes);
+app.use('/api/rentals', rentalsRoutes);
 app.use('/', homeRoutes);
 
 app.set('view engine', 'pug');
