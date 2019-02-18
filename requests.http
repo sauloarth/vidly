@@ -92,3 +92,16 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/api/rentals/ HTTP/1.1
+
+###
+
+POST http://localhost:3000/api/users/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Saul GoodMan",
+    "email": "goodman@boy.com",
+    "password": "5c6b0b4e82faa823b07919d5"
+}
+
+###

@@ -2,6 +2,7 @@ const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const homeRoutes = require('./routes/home');
 const rentalsRoutes = require('./routes/rentals');
+const usersRoutes = require('./routes/users');
 const genresRoutes = require('./routes/genres');
 const costumersRoutes = require('./routes/customers');
 const moviesRoutes = require('./routes/movies');
@@ -20,10 +21,11 @@ mongoose.connect(config.get('db.path'), { useNewUrlParser: true })
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use('/genres', genresRoutes);
-app.use('/costumers', costumersRoutes);
-app.use('/movies', moviesRoutes);
+app.use('/api/genres', genresRoutes);
+app.use('/api/costumers', costumersRoutes);
+app.use('/api/movies', moviesRoutes);
 app.use('/api/rentals', rentalsRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/', homeRoutes);
 
 app.set('view engine', 'pug');
