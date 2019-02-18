@@ -10,5 +10,16 @@ const schema = mongoose.Schema({
         }
 });
 
+
+function validate(genre) {
+    // Joi schema accessible by all functions
+    const schema = {
+        name: Joi.string().min(3).required()
+    };
+
+    return Joi.validate(genre, schema);
+}
+
 module.exports.Genre = mongoose.model('Genre', schema);
 module.exports.genreSchema = schema;
+module.exports.validate = validate;

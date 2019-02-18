@@ -3,6 +3,7 @@ const routes = express.Router();
 const Joi = require('joi');
 const db = require('debug')('vidly:data');
 const { Genre } = require('../models/genre');
+const { validate } = require('../models/genre');
 
 routes.get('/', async (req, res) => {
     const results = await Genre.find();   
@@ -20,7 +21,7 @@ routes.get('/:id', async (req, res) => {
 
 routes.post('/', async (req, res) => {
     // validation process with Joi
-    const { error } = validateGenre(req.body);
+    const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
@@ -45,7 +46,7 @@ routes.put('/:id', async (req, res) => {
     const data = req.body;
 
     // validation process with Joi
-    const { error } = validateGenre(data);
+    const { error } = validate(data);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
@@ -74,14 +75,5 @@ routes.delete('/:id', async (req, res) => {
     return res.send(result); 
 })
 
-
-function validateGenre(genre) {
-    // Joi schema accessible by all functions
-    const schema = {
-        name: Joi.string().min(3).required()
-    };
-
-    return Joi.validate(genre, schema);
-}
 
 module.exports = routes;

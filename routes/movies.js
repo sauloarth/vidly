@@ -1,8 +1,8 @@
 const express = require('express');
 const routes = express.Router();
 const { Movie }  = require('../models/movie');
+const { validate } = require('../models/movie');
 const { Genre } = require('../models/genre');
-const Joi = require('joi');
 const db = require('debug')('vidly:moviesRoutes');
 
 routes.get('/', async (req, res) => {
@@ -12,7 +12,7 @@ routes.get('/', async (req, res) => {
 })
 
 routes.post('/', async (req, res) => {
-    const { error } = validateMovie(req.body);
+    const { error } = validate(req.body);
     if(error) res.status(400).send(error.details[0].message);
 
     const genre = await Genre.findById(req.body.genreId);
@@ -40,7 +40,7 @@ routes.put('/:id', async (req, res) => {
     let data = req.body;
     db(data);
 
-    const { error } = validateMovie(data);
+    const { error } = validate(data);
     if(error) return res.status(400).send(error.details[0].message);
 
     const genre = await Genre.findById(data.genreId);
@@ -70,16 +70,5 @@ routes.delete('/:id', async (req, res) => {
     }
     return res.send('The movie was successfuly deleted.');
 })
-
-function validateMovie(movie) {
-    const schema = {
-        title: Joi.string().required().min(3).max(100),
-        genreId: Joi.required(),
-        numberInStock: Joi.number().required().min(0),
-        dailyRentalRate: Joi.number().required().min(0)
-    }
-
-    return Joi.validate(movie, schema);
-}
 
 module.exports = routes;
