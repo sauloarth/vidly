@@ -19,14 +19,14 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
         minlength: 6,
-        maxlength: 100
+        maxlength: 1024
     }
 })
 
 function validate(user) {
     const schema = {
-        name: Joi.string().required(),
-        email: Joi.required(),
+        name: Joi.string().required().min(3).max(255),
+        email: Joi.string().required().min(3).max(255).email(),
         password: Joi.string().required().min(6).max(100)
     }
 
