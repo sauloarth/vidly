@@ -26,7 +26,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZlZTYxN2VjMmE1N
 GET http://localhost:3000/costumers HTTP/1.1
 
 ###
-GET http://localhost:3000/costumers/5c5c1ed75c28671208014359 HTTP/1.1
+GET http://localhost:3000/api/costumers/5c5c1ed7c28671208014359 HTTP/1.1
 
 ###
 POST http://localhost:3000/costumers/ HTTP/1.1

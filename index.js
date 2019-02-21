@@ -1,5 +1,6 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const error = require('./middlewares/error');
 const homeRoutes = require('./routes/home');
 const rentalsRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
@@ -34,6 +35,7 @@ app.use('/api/rentals', rentalsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/auths', authsRoutes);
 app.use('/', homeRoutes);
+app.use(error);
 
 app.set('view engine', 'pug');
 app.set('views', './views');
