@@ -3,11 +3,12 @@ GET http://localhost:3000/genres HTTP/1.1
 GET http://localhost:3000/genres/5c59cf815450ab0a88be6d60 HTTP/1.1
 ###
 
-POST http://localhost:3000/genres/ HTTP/1.1
+POST http://localhost:3000/api/genres/ HTTP/1.1
 content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZlZWQyMDU0NmJmMzIzMmM1MjdjMzEiLCJpYXQiOjE1NTA3NzU5MTF9.3GGijgLWWTRUDMnxyOIm2PB80BLsRbu5AFkMR_etjFE
 
 {
-    "name": "Fantasy"
+    "name": "Terecuteco"
 }
 ###
 PUT http://localhost:3000/genres/5c59c107d19fb123a402d30b HTTP/1.1
@@ -18,7 +19,8 @@ content-type: application/json
 }
 
 ###
-DELETE  http://localhost:3000/genres/5c5c05acf48cc11540eba996 HTTP/1.1
+DELETE  http://localhost:3000/api/genres/5c6ef72374bd7b215c8da9fc HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZlZTYxN2VjMmE1NTFjNDA4NDE1MTIiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTA3Nzg0Njh9.am3gQCH2g4np9HVLCRp66GofyP70vXhxR1UlMarhU-Q
 
 ###
 GET http://localhost:3000/costumers HTTP/1.1
@@ -99,9 +101,26 @@ POST http://localhost:3000/api/users/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Pan Veg",
-    "email": "incroi@dbz.com",
-    "password": "veveveve"
+    "name": "Pike2 Showman",
+    "email": "pikesm2@fintech.com",
+    "password": "123456"
 }
+
+###
+
+
+POST http://localhost:3000/api/auths/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "cp@adobu.com",
+    "password": "123456"
+}
+
+###
+
+
+GET http://localhost:3000/api/users/me HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZlZWQyMDU0NmJmMzIzMmM1MjdjMzEiLCJpYXQiOjE1NTA3NzU5MTF9.3GGijgLWWTRUDMnxyOIm2PB80BLsRbu5AFkMR_etjFE
 
 ###

@@ -1,6 +1,7 @@
-const express = require('express')
+const express = require('express');
 const routes = express.Router();
-const Joi = require('joi');
+const auth = require('../middlewares/auth');
+const admin = require('../middlewares/admin');
 const db = require('debug')('vidly:data');
 const { Genre } = require('../models/genre');
 const { validate } = require('../models/genre');
@@ -19,7 +20,7 @@ routes.get('/:id', async (req, res) => {
     // or less than the regular id is passed.
 })
 
-routes.post('/', async (req, res) => {
+routes.post('/', auth, async (req, res) => {
     // validation process with Joi
     const { error } = validate(req.body);
     if (error) {
@@ -41,7 +42,7 @@ routes.post('/', async (req, res) => {
 
 })
 
-routes.put('/:id', async (req, res) => {
+routes.put('/:id', auth, async (req, res) => {
     const id = req.params.id;
     const data = req.body;
 
@@ -63,7 +64,7 @@ routes.put('/:id', async (req, res) => {
 
 })
 
-routes.delete('/:id', async (req, res) => {
+routes.delete('/:id', [auth, admin], async (req, res) => {
     const id = req.params.id;
 
     const result = await Genre.deleteOne({_id:id})

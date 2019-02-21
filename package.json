@@ -17,6 +17,7 @@
   "author": "Saulo Reis",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.0.1",
     "debug": "^4.1.1",
     "eslint": "^5.13.0",
@@ -24,6 +25,7 @@
     "fawn": "^2.1.5",
     "joi": "^13.0.1",
     "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^8.5.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.9",
     "morgan": "^1.9.1",
