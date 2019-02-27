@@ -1,14 +1,13 @@
-GET http://localhost:3000/genres HTTP/1.1
+GET http://localhost:3000/api/genres HTTP/1.1
 ###
 GET http://localhost:3000/genres/5c59cf815450ab0a88be6d60 HTTP/1.1
 ###
 
 POST http://localhost:3000/api/genres/ HTTP/1.1
 content-type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZlZWQyMDU0NmJmMzIzMmM1MjdjMzEiLCJpYXQiOjE1NTA3NzU5MTF9.3GGijgLWWTRUDMnxyOIm2PB80BLsRbu5AFkMR_etjFE
+x-auth-token: 
 
 {
-    "name": "Terecuteco"
 }
 ###
 PUT http://localhost:3000/genres/5c59c107d19fb123a402d30b HTTP/1.1

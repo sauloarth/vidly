@@ -5,16 +5,13 @@ const admin = require('../middlewares/admin');
 const db = require('debug')('vidly:data');
 const { Genre } = require('../models/genre');
 const { validate } = require('../models/genre');
+const asyncMiddleware = require('../middlewares/async');
 
-routes.get('/', async (req, res, next) => {
-    try {
-        const results = await Genre.find();   
-        res.send(results);
-        db(results);
-    } catch (err) {
-        next(err);
-    }
-});
+routes.get('/', asyncMiddleware (async (req, res) => {
+    const results = await Genre.find();   
+    res.send(results);
+    db(results);
+}));
 
 routes.get('/:id', async (req, res) => {
     const id = req.params.id;
