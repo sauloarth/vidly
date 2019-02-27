@@ -2,6 +2,8 @@ require('express-async-errors');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const error = require('./middlewares/error');
+const winston = require('winston');
+require('winston-mongodb');
 const homeRoutes = require('./routes/home');
 const rentalsRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
@@ -21,10 +23,12 @@ if(!config.get('jwtPrivateKey')) {
     process.exit(1);
 }
 
+winston.add(winston.transports.File, {filename: 'logfile.log'});
+winston.add(winston.transports.MongoDB, {db: config.get('db.path')});
+
 mongoose.connect(config.get('db.path'), { useNewUrlParser: true })
     .then(db('Database connected.'))
     .catch(err => db('Error connecting on Database: ', err));
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
