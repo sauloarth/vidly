@@ -1,14 +1,15 @@
 GET http://localhost:3000/api/genres HTTP/1.1
 ###
-GET http://localhost:3000/genres/5c59cf815450ab0a88be6d60 HTTP/1.1
-###
-
 POST http://localhost:3000/api/genres/ HTTP/1.1
 content-type: application/json
-x-auth-token: 
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZlZTYxN2VjMmE1NTFjNDA4NDE1MTIiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTEzODE2MjF9.rt1l5jebWJjkfpraBpsUC3HXIbencC9L8d3QNfwEQ48
 
 {
+    "name":"Others"
 }
+
+###
+GET http://localhost:3000/genres/5c59cf815450ab0a88be6d60 HTTP/1.1
 ###
 PUT http://localhost:3000/genres/5c59c107d19fb123a402d30b HTTP/1.1
 content-type: application/json
