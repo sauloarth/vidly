@@ -18,13 +18,40 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
+winston.handleExceptions(
+    new winston.transports.File({filename:'unhandled.log'})
+)
+
+// process.on('uncaughtException', (ex) => {
+//     console.log("Got you");
+//     winston.error(ex.message, ex);
+//     process.exit(1);
+// })
+
+// process.on('unhandledRejection', (ex) => {
+//     console.log("Got you too.");
+//     winston.error(ex.message, ex);
+//     process.exit(1);
+// })
+
+process.on('unhandledRejection', (ex) => {
+    throw ex;
+})
+
 if(!config.get('jwtPrivateKey')) {
     console.log('FATAL ERROR: jwtPrivateKey is not defined.');
     process.exit(1);
 }
 
 winston.add(winston.transports.File, {filename: 'logfile.log'});
-winston.add(winston.transports.MongoDB, {db: config.get('db.path')});
+//winston.add(winston.transports.MongoDB, {db: config.get('db.path')});
+
+const p = Promise.reject(new Error('Unhandled promise error.'));
+p.then(()=> console.log('Life is good with god.'));
+
+throw new Error('Unhandled exception.')
+
+
 
 mongoose.connect(config.get('db.path'), { useNewUrlParser: true })
     .then(db('Database connected.'))
@@ -44,7 +71,6 @@ app.use(error);
 
 app.set('view engine', 'pug');
 app.set('views', './views');
-
 
 
 if (app.get('env') === 'development') {
