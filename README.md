@@ -18,4 +18,5 @@ Imaginary service for renting out movies developed on Node Backend Training on U
 * Modelling relationships between objects in mongoDB (by mongoose)
 * Simulating  transactions with Fawn
 * Validating objectId with Joi-objectId
+* Unit tests with Jest
 
