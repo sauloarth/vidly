@@ -1,38 +1,41 @@
 {
-    "name": "vidly",
-    "version": "1.0.0",
-    "description": "imaginary service for renting out movies",
-    "main": "index.js",
-    "scripts": {
-        "test": "jest --watchAll --verbose"
-    },
-    "keywords": [
-        "sauloarth",
-        "node",
-        "express",
-        "mongo",
-        "api",
-        "backend"
-    ],
-    "author": "Saulo Reis",
-    "license": "ISC",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "config": "^3.0.1",
-        "debug": "^4.1.1",
-        "eslint": "^5.13.0",
-        "express": "^4.16.4",
-        "express-async-errors": "^3.1.1",
-        "fawn": "^2.1.5",
-        "joi": "^13.0.1",
-        "joi-objectid": "^2.0.0",
-        "jsonwebtoken": "^8.5.0",
-        "lodash": "^4.17.11",
-        "mongoose": "^5.4.9",
-        "morgan": "^1.9.1",
-        "nodemon": "^1.18.9",
-        "pug": "^2.0.3",
-        "winston": "^2.4.0",
-        "winston-mongodb": "^3.0.0"
-    }
+  "name": "vidly",
+  "version": "1.0.0",
+  "description": "imaginary service for renting out movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --verbose"
+  },
+  "keywords": [
+    "sauloarth",
+    "node",
+    "express",
+    "mongo",
+    "api",
+    "backend"
+  ],
+  "author": "Saulo Reis",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.0.1",
+    "debug": "^4.1.1",
+    "eslint": "^5.13.0",
+    "express": "^4.16.4",
+    "express-async-errors": "^3.1.1",
+    "fawn": "^2.1.5",
+    "joi": "^13.0.1",
+    "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^8.5.0",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.9",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
+    "pug": "^2.0.3",
+    "winston": "^2.4.0",
+    "winston-mongodb": "^3.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^3.4.2"
+  }
 }

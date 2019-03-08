@@ -1,3 +1,9 @@
 {
+    "name": "Vidly",
+    "db": {
+        "path": "db_PATH",
+        "password": "db_PASSWORD"
+    },
     "jwtPrivateKey": "1234"
+
 }
