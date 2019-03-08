@@ -8,6 +8,8 @@ require('./startup/routes')(app);
 require('./startup/infra')();
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => { 
-    winston.info(`vidly server running on port ${port}`) 
+const server = app.listen(port, () => {
+    winston.info(`vidly server running on port ${port}`);
 });
+
+module.exports = server;
