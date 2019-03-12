@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const schema = mongoose.Schema({
-    name:{ 
-            type: String, 
-            required: true,
-            minlength: 3,
-            maxlength: 50
-        }
+    name: {
+        type: String,
+        required: true,
+        minlength: 3,
+        maxlength: 50
+    }
 });
 
 
 function validate(genre) {
     // Joi schema accessible by all functions
     const schema = {
-        name: Joi.string().min(3).required()
+        name: Joi.string().min(3).max(50).required()
     };
 
     return Joi.validate(genre, schema);
