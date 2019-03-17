@@ -8,19 +8,19 @@ const express = require('express');
  * is the one inside the app object.
  */
 
-module.exports = function (app){
+module.exports = function(app) {
     app.use(express.urlencoded({ extended: true }));
     app.use(express.static('public'));
-    
+
     //config view engine
     app.set('view engine', 'pug');
     app.set('views', './views');
 
     //jwtPrivateKey is a must
-    if(!config.get('jwtPrivateKey')) {
+    if (!config.get('jwtPrivateKey')) {
         throw new Error('FATAL ERROR: jwtPrivateKey is not defined.');
     }
-    
+
     //turn on/off morgan depending on env
     if (app.get('env') === 'development') {
         app.use(morgan('tiny'));

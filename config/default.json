@@ -1,9 +1,3 @@
 {
-    "name": "Vidly",
-    "db": {
-        "path": "db_PATH",
-        "password": "db_PASSWORD"
-    },
-    "jwtPrivateKey": ""
-    
+    "mode": "Vidly - Running on Default Mode"
 }

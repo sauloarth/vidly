@@ -1,7 +1,3 @@
 {
-    "name": "Vidly - Development setup",
-    "db": {
-        "path": "db_PATH",
-        "password": "db_PASSWORD"
-    }
+    "mode": "Vidly - Running on Development Mode"
 }

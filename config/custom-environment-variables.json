@@ -1,7 +1,4 @@
 {
-    "db": {
-        "path": "db_PATH",
-        "password": "db_PASSWORD"
-    },
+    "db": "vidly_db",
     "jwtPrivateKey": "vidly_JWTPK"
 }
